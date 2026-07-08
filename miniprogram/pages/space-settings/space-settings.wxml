@@ -1,0 +1,25 @@
+<!-- miniprogram/pages/space-settings/space-settings.wxml -->
+<view class="container" wx:if="{{space}}">
+  <view class="section">
+    <view class="section-title">空间信息</view>
+    <view class="info-card">
+      <view class="info-row">
+        <text class="info-label">名称</text>
+        <text class="info-value">{{space.name}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">成员</text>
+        <text class="info-value">{{space.members.length}} 人</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">邀请成员</view>
+    <view class="invite-card">
+      <view class="invite-code">{{inviteCode}}</view>
+      <view class="invite-hint">将邀请码发给 TA，TA 在首页点击「加入」输入即可</view>
+      <button class="btn-primary" bindtap="copyInviteCode">复制邀请码</button>
+    </view>
+  </view>
+</view>
