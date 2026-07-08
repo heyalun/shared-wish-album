@@ -12,6 +12,9 @@ const mockDatabase = {
       this._collections[name] = {
         _docs: [],
         _nextId: 1,
+        get() {
+          return Promise.resolve({ data: [...this._docs] });
+        },
         add({ data }) {
           const doc = { _id: String(this._nextId++), ...data };
           this._docs.push(doc);
@@ -121,5 +124,5 @@ module.exports = mockCloud;
 module.exports.init = () => {};
 module.exports.DYNAMIC_CURRENT_ENV = 'mock-env';
 
-exports.mockCloud = mockCloud;
-exports.mockDatabase = mockDatabase;
+module.exports.mockCloud = mockCloud;
+module.exports.mockDatabase = mockDatabase;
