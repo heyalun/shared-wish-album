@@ -1,0 +1,12 @@
+{
+  "name": "shared-wish-album",
+  "version": "1.0.0",
+  "description": "WeChat mini-program for shared photo albums and wish lists",
+  "scripts": {
+    "test": "jest --forceExit --detectOpenHandles",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

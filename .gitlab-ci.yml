@@ -1,0 +1,11 @@
+default:
+  image: node:18
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - npm install
+    - npm test -- --passWithNoTests
