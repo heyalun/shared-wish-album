@@ -31,37 +31,30 @@
   </div>
 
   <script>
-    async function loadStats() {
+    function loadStats() {
       const container = document.getElementById('stats');
-      try {
-        container.innerHTML = '<div class="loading">加载中...</div>';
 
-        const response = await fetch('/api/stats');
-        const data = await response.json();
+      const demoSpaces = [
+        { name: '我们的旅行日记', memberCount: 2, photoCount: 42, wishCount: 15 },
+        { name: '美食探店计划', memberCount: 2, photoCount: 28, wishCount: 23 },
+        { name: '周末小聚', memberCount: 3, photoCount: 10, wishCount: 5 }
+      ];
 
-        if (!data.spaces || data.spaces.length === 0) {
-          container.innerHTML = '<div class="empty">暂无空间数据</div>';
-          return;
-        }
+      container.innerHTML = demoSpaces.map(space => `
+        <div class="stat-card">
+          <div class="stat-card-name">${escapeHtml(space.name)}</div>
+          <div class="stat-row"><span>成员</span><span>${space.memberCount} 人</span></div>
+          <div class="stat-row"><span>照片</span><span>${space.photoCount} 张</span></div>
+          <div class="stat-row"><span>心愿</span><span>${space.wishCount} 个</span></div>
+        </div>
+      `).join('');
 
-        container.innerHTML = data.spaces.map(space => `
-          <div class="stat-card">
-            <div class="stat-card-name">${escapeHtml(space.name)}</div>
-            <div class="stat-row"><span>成员</span><span>${space.memberCount} 人</span></div>
-            <div class="stat-row"><span>照片</span><span>${space.photoCount} 张</span></div>
-            <div class="stat-row"><span>心愿</span><span>${space.wishCount} 个</span></div>
-          </div>
-        `).join('');
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'stat-grid';
-        wrapper.innerHTML = container.innerHTML;
-        container.innerHTML = '';
-        container.appendChild(wrapper);
-        container.className = 'stat-grid';
-      } catch (err) {
-        container.innerHTML = '<div class="error">加载失败，请检查服务是否运行</div>';
-      }
+      const wrapper = document.createElement('div');
+      wrapper.className = 'stat-grid';
+      wrapper.innerHTML = container.innerHTML;
+      container.innerHTML = '';
+      container.appendChild(wrapper);
+      container.className = 'stat-grid';
     }
 
     function escapeHtml(text) {
