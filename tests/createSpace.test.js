@@ -1,10 +1,6 @@
 const { main } = require('../cloudfunctions/createSpace');
 
 describe('createSpace', () => {
-  beforeEach(() => {
-    global.resetMockData();
-  });
-
   test('creates a space with a 6-character invite code', async () => {
     const result = await main({ name: '我们的空间' }, {});
     expect(result.data.space).toBeDefined();

@@ -100,6 +100,8 @@ const mockDatabase = {
 const mockCloud = {
   _openid: 'mock-openid-123',
   _fileCounter: 0,
+  DYNAMIC_CURRENT_ENV: 'mock-env',
+  init() {},
   getWXContext() {
     return { OPENID: this._openid };
   },
