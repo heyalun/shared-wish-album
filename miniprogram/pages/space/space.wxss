@@ -1,0 +1,60 @@
+/* miniprogram/pages/space/space.wxss */
+.space-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.space-name {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.action-icon {
+  font-size: 40rpx;
+  padding: 10rpx;
+}
+
+.tab-bar {
+  display: flex;
+  margin: 20rpx 0;
+  border-bottom: 2rpx solid #eee;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  color: #999;
+  border-bottom: 4rpx solid transparent;
+}
+
+.tab-item.active {
+  color: #07c160;
+  border-bottom-color: #07c160;
+}
+
+.tab-content {
+  padding: 40rpx 0;
+}
+
+.photo-entry, .wish-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.entry-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.entry-text {
+  font-size: 28rpx;
+  color: #666;
+}
