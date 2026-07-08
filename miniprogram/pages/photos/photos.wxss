@@ -1,0 +1,62 @@
+/* miniprogram/pages/photos/photos.wxss */
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  padding: 12rpx 0;
+}
+
+.photo-item {
+  width: calc(50% - 6rpx);
+  background: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.08);
+}
+
+.photo-thumb {
+  width: 100%;
+  height: 300rpx;
+}
+
+.photo-info {
+  padding: 16rpx;
+}
+
+.photo-location {
+  font-size: 26rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.photo-date {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+.upload-fab {
+  position: fixed;
+  bottom: 60rpx;
+  right: 40rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: #07c160;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(7, 193, 96, 0.4);
+}
+
+.fab-icon {
+  font-size: 50rpx;
+  color: #fff;
+  line-height: 1;
+}

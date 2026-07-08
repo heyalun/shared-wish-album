@@ -1,0 +1,23 @@
+<!-- miniprogram/pages/photos/photos.wxml -->
+<view class="container">
+  <view wx:if="{{photos.length === 0}}" class="empty-state">
+    <view>还没有照片，快来上传第一张吧</view>
+  </view>
+
+  <view wx:else class="photo-grid">
+    <view wx:for="{{photos}}" wx:key="_id" class="photo-item" bindtap="goToDetail" data-id="{{item._id}}">
+      <image class="photo-thumb" src="{{item.imageUrl}}" mode="aspectFill" lazy-load />
+      <view class="photo-info">
+        <view class="photo-location" wx:if="{{item.locationName}}">{{item.locationName}}</view>
+        <view class="photo-date">{{item.takenAtFormatted}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{hasMore}}" class="load-more">加载更多...</view>
+  <view wx:else class="load-more">没有更多了</view>
+
+  <view class="upload-fab" bindtap="goToUpload">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

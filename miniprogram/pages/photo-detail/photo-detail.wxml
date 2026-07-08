@@ -1,0 +1,18 @@
+<!-- miniprogram/pages/photo-detail/photo-detail.wxml -->
+<view wx:if="{{photo}}" class="container">
+  <image class="detail-image" src="{{photo.imageUrl}}" mode="widthFix" bindtap="previewImage" />
+  <view class="detail-info">
+    <view class="detail-row" wx:if="{{photo.locationName}}">
+      <text class="detail-label">地点</text>
+      <text class="detail-value">{{photo.locationName}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">时间</text>
+      <text class="detail-value">{{photo.takenAtFormatted}}</text>
+    </view>
+    <view class="detail-row" wx:if="{{photo.caption}}">
+      <text class="detail-label">感受</text>
+      <text class="detail-value">{{photo.caption}}</text>
+    </view>
+  </view>
+</view>
