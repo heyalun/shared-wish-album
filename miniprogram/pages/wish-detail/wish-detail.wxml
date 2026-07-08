@@ -1,0 +1,33 @@
+<!-- miniprogram/pages/wish-detail/wish-detail.wxml -->
+<view wx:if="{{wish}}" class="container">
+  <view class="wish-header">
+    <view class="wish-type-tag {{wish.type}}">{{typeLabels[wish.type]}}</view>
+    <view class="wish-status {{wish.done ? 'completed' : ''}}">
+      {{wish.done ? '已完成' : '进行中'}}
+    </view>
+  </view>
+
+  <view class="wish-title">{{wish.title}}</view>
+
+  <view class="wish-info" wx:if="{{wish.location || wish.note}}">
+    <view class="info-row" wx:if="{{wish.location}}">
+      <text class="info-label">地点</text>
+      <text class="info-value">{{wish.location}}</text>
+    </view>
+    <view class="info-row" wx:if="{{wish.note}}">
+      <text class="info-label">备注</text>
+      <text class="info-value">{{wish.note}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{wish.done}}" class="completed-info">
+    <view class="info-row">
+      <text class="info-label">完成时间</text>
+      <text class="info-value">{{wish.doneAt}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{!wish.done}}" class="complete-section">
+    <button class="btn-primary complete-btn" bindtap="completeWish">标记完成</button>
+  </view>
+</view>

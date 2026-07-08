@@ -1,0 +1,32 @@
+<!-- miniprogram/pages/wish-create/wish-create.wxml -->
+<view class="container">
+  <view class="form-group">
+    <view class="form-label">心愿标题</view>
+    <input class="form-input" placeholder="如：去日本看樱花" maxlength="100" value="{{title}}" bindinput="onInput" data-field="title" />
+    <view class="char-count">{{title.length}}/100</view>
+  </view>
+
+  <view class="form-group">
+    <view class="form-label">类型</view>
+    <radio-group bindchange="onTypeChange">
+      <label wx:for="{{types}}" wx:key="value" class="radio-item">
+        <radio value="{{item.value}}" checked="{{type === item.value}}" />
+        <text>{{item.label}}</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="form-group">
+    <view class="form-label">地点（可选）</view>
+    <input class="form-input" placeholder="如：日本东京" value="{{location}}" bindinput="onInput" data-field="location" />
+  </view>
+
+  <view class="form-group">
+    <view class="form-label">备注（可选）</view>
+    <textarea class="form-textarea" placeholder="添加一些备注..." value="{{note}}" bindinput="onInput" data-field="note" />
+  </view>
+
+  <button class="btn-primary submit-btn" bindtap="submit" disabled="{{submitting}}">
+    {{submitting ? '创建中...' : '创建心愿'}}
+  </button>
+</view>

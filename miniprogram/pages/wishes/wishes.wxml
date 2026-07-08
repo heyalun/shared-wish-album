@@ -1,0 +1,31 @@
+<!-- miniprogram/pages/wishes/wishes.wxml -->
+<view class="container">
+  <view class="filter-bar">
+    <view wx:for="{{filters}}" wx:key="*this" class="filter-item {{activeFilter === item ? 'active' : ''}}" bindtap="switchFilter" data-index="{{index}}">
+      {{item}}
+    </view>
+  </view>
+
+  <view wx:if="{{wishes.length === 0}}" class="empty-state">
+    <view>还没有心愿，快去创建吧</view>
+  </view>
+
+  <view wx:else class="wish-list">
+    <view wx:for="{{wishes}}" wx:key="_id" class="wish-card" bindtap="goToDetail" data-id="{{item._id}}">
+      <view class="wish-card-header">
+        <view class="wish-type-tag {{item.type}}">
+          {{item.type === 'food' ? '美食' : item.type === 'travel' ? '旅游' : '其他'}}
+        </view>
+        <view class="wish-done-tag {{item.done ? 'completed' : ''}}">
+          {{item.done ? '已完成' : '进行中'}}
+        </view>
+      </view>
+      <view class="wish-title">{{item.title}}</view>
+      <view class="wish-location" wx:if="{{item.location}}">{{item.location}}</view>
+    </view>
+  </view>
+
+  <view class="create-fab" bindtap="goToCreate">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

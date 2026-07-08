@@ -1,0 +1,44 @@
+/* miniprogram/pages/wish-create/wish-create.wxss */
+.form-group {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.form-input {
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+}
+
+.form-textarea {
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  height: 200rpx;
+  font-size: 28rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 40rpx;
+}

@@ -1,0 +1,31 @@
+<!-- miniprogram/pages/upload/upload.wxml -->
+<view class="container">
+  <view class="image-picker" bindtap="chooseImage">
+    <image wx:if="{{imagePath}}" class="preview-image" src="{{imagePath}}" mode="aspectFill" />
+    <view wx:else class="picker-placeholder">
+      <text class="picker-icon">+</text>
+      <text>点击选择照片</text>
+    </view>
+  </view>
+
+  <view class="form-group">
+    <view class="form-label">拍摄时间</view>
+    <picker mode="date" value="{{takenAt}}" bindchange="onDateChange">
+      <view class="form-picker">{{takenAt || '请选择'}}</view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <view class="form-label">地点</view>
+    <input class="form-input" placeholder="如：南京夫子庙" value="{{locationName}}" bindinput="onLocationInput" data-field="locationName" />
+  </view>
+
+  <view class="form-group">
+    <view class="form-label">感受</view>
+    <textarea class="form-textarea" placeholder="记录此刻的感受..." value="{{caption}}" bindinput="onLocationInput" data-field="caption" />
+  </view>
+
+  <button class="btn-primary submit-btn" bindtap="submit" disabled="{{submitting}}">
+    {{submitting ? '上传中...' : '提交'}}
+  </button>
+</view>
