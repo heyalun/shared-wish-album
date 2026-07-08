@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>共享心愿相册 - 管理后台</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .header { text-align: center; margin-bottom: 40px; }
+    .header h1 { font-size: 28px; margin-bottom: 8px; }
+    .header p { color: #999; font-size: 14px; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .stat-card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .stat-card-name { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+    .stat-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; color: #666; }
+    .stat-row span:last-child { font-weight: 500; color: #333; }
+    .loading { text-align: center; padding: 60px; color: #999; }
+    .error { text-align: center; padding: 60px; color: #e74c3c; }
+    .empty { text-align: center; padding: 60px; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>共享心愿相册</h1>
+      <p>管理后台 - 空间统计概览</p>
+    </div>
+    <div id="stats" class="loading">加载中...</div>
+  </div>
+
+  <script>
+    async function loadStats() {
+      const container = document.getElementById('stats');
+      try {
+        container.innerHTML = '<div class="loading">加载中...</div>';
+
+        const response = await fetch('/api/stats');
+        const data = await response.json();
+
+        if (!data.spaces || data.spaces.length === 0) {
+          container.innerHTML = '<div class="empty">暂无空间数据</div>';
+          return;
+        }
+
+        container.innerHTML = data.spaces.map(space => `
+          <div class="stat-card">
+            <div class="stat-card-name">${escapeHtml(space.name)}</div>
+            <div class="stat-row"><span>成员</span><span>${space.memberCount} 人</span></div>
+            <div class="stat-row"><span>照片</span><span>${space.photoCount} 张</span></div>
+            <div class="stat-row"><span>心愿</span><span>${space.wishCount} 个</span></div>
+          </div>
+        `).join('');
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'stat-grid';
+        wrapper.innerHTML = container.innerHTML;
+        container.innerHTML = '';
+        container.appendChild(wrapper);
+        container.className = 'stat-grid';
+      } catch (err) {
+        container.innerHTML = '<div class="error">加载失败，请检查服务是否运行</div>';
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    loadStats();
+  </script>
+</body>
+</html>
