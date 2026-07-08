@@ -1,11 +1,12 @@
-default:
-  image: node:18
-
 stages:
   - test
 
-test:
+unit-test:
   stage: test
+  image: node:18
   script:
     - npm install
-    - npm test -- --passWithNoTests
+    - npm test
+  cache:
+    paths:
+      - node_modules/
