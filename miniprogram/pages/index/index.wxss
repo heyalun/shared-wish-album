@@ -1,0 +1,92 @@
+/* miniprogram/pages/index/index.wxss */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 80rpx 60rpx;
+  text-align: center;
+  width: 600rpx;
+}
+
+.login-icon {
+  font-size: 100rpx;
+  margin-bottom: 30rpx;
+}
+
+.login-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.login-desc {
+  color: #999;
+  font-size: 28rpx;
+  margin-bottom: 60rpx;
+}
+
+.login-btn {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.header-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-small {
+  font-size: 26rpx;
+  padding: 12rpx 24rpx;
+  background-color: #07c160;
+  color: #fff;
+  border-radius: 8rpx;
+  border: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #07c160;
+  border: 2rpx solid #07c160;
+}
+
+.space-list {
+  margin-top: 20rpx;
+}
+
+.space-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.space-card-name {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.space-card-meta {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}

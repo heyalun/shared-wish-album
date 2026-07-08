@@ -1,0 +1,26 @@
+<!-- miniprogram/pages/space/space.wxml -->
+<view class="container">
+  <view class="space-header">
+    <view class="space-name">{{spaceName}}</view>
+    <view class="space-actions">
+      <text class="action-icon" bindtap="goToSettings">⚙</text>
+    </view>
+  </view>
+
+  <view class="tab-bar">
+    <view wx:for="{{tabs}}" wx:key="*this" class="tab-item {{currentTab === index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}">
+      {{item}}
+    </view>
+  </view>
+
+  <view class="tab-content">
+    <view wx:if="{{currentTab === 0}}" class="photo-entry" bindtap="goToPhotos">
+      <view class="entry-icon">📲</view>
+      <view class="entry-text">查看共享相册</view>
+    </view>
+    <view wx:else class="wish-entry" bindtap="goToWishes">
+      <view class="entry-icon">🌟</view>
+      <view class="entry-text">查看心愿列表</view>
+    </view>
+  </view>
+</view>

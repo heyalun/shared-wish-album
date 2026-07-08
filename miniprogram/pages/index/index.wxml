@@ -1,0 +1,32 @@
+<!-- miniprogram/pages/index/index.wxml -->
+<view wx:if="{{!isLoggedIn}}" class="login-container">
+  <view class="login-card">
+    <view class="login-icon">📸</view>
+    <view class="login-title">共享心愿相册</view>
+    <view class="login-desc">记录你和 TA 的回忆与期待</view>
+    <button class="btn-primary login-btn" bindtap="handleLogin">微信授权登录</button>
+  </view>
+</view>
+
+<view wx:else class="container">
+  <view class="header">
+    <view class="header-title">我的空间</view>
+    <view class="header-actions">
+      <button class="btn-small" bindtap="handleCreateSpace">新建</button>
+      <button class="btn-small btn-outline" bindtap="handleJoinSpace">加入</button>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty-state">加载中...</view>
+
+  <view wx:elif="{{spaces.length === 0}}" class="empty-state">
+    <view>还没有空间，创建一个吧</view>
+  </view>
+
+  <view wx:else class="space-list">
+    <view wx:for="{{spaces}}" wx:key="_id" class="space-card" bindtap="handleOpenSpace" data-id="{{item._id}}">
+      <view class="space-card-name">{{item.name}}</view>
+      <view class="space-card-meta">{{item.members.length}} 位成员</view>
+    </view>
+  </view>
+</view>
