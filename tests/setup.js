@@ -120,7 +120,7 @@ const mockCloud = {
 global.cloud = mockCloud;
 global.mockDatabase = mockDatabase;
 
-beforeEach(() => {
+global.beforeEach(() => {
   mockDatabase._reset();
   mockCloud._fileCounter = 0;
 });
