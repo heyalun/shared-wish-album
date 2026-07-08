@@ -30,7 +30,7 @@ describe('getPhotos', () => {
 
   test('supports pagination with pageSize', async () => {
     for (let i = 0; i < 25; i++) {
-      await uploadPhoto({ spaceId, imageUrl: `cloud://photo${i}.jpg`, takenAt: Date.now() + i }, {});
+      await uploadPhoto({ spaceId, imageUrl: 'cloud://photo' + i + '.jpg', takenAt: Date.now() + i }, {});
     }
 
     const result = await getPhotos({ spaceId, pageSize: 20 }, {});
