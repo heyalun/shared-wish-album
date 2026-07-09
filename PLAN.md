@@ -3309,6 +3309,29 @@ git commit -m "feat: implement web admin dashboard"
 - Modify: `D:/vibe-project/.gitlab-ci.yml`
 - Create: `D:/vibe-project/README.md`
 
+(Content omitted — see original commit)
+
+---
+
+### Task 18: Docker Distribution + deleteSpace + Web Admin API ✅ **DONE** `02e0fc8`
+
+**Files:**
+- Create: `D:/vibe-project/Dockerfile`
+- Create: `D:/vibe-project/.dockerignore`
+- Create: `D:/vibe-project/tests/deleteSpace.test.js`
+- Modify: `D:/vibe-project/web-admin/index.html`
+- Modify: `D:/vibe-project/README.md`
+- Modify: `D:/vibe-project/tests/__mocks__/wx-server-sdk.js`
+
+**Changes:**
+- Dockerfile for containerized cloud function testing
+- deleteSpace cloud function with 4 test cases (delete own space, reject non-existent, reject missing spaceId, reject non-creator)
+- Web admin now tries to fetch from cloud function HTTP API, falls back to demo data
+- Mock enhanced with `deleteFile`, `doc().remove()`, `where().remove()`
+- README updated with Docker instructions, test count (38/10), directory structure
+
+---
+
 - [ ] **Step 1: Write .gitlab-ci.yml**
 
 ```yaml
@@ -3446,6 +3469,7 @@ Task 1 (scaffolding)
             └─► Task 15 (space settings)
   └─► Task 16 (web admin)
   └─► Task 17 (CI + README)
+  └─► Task 18 (Docker + deleteSpace + Web Admin API)
 ```
 
 **Parallel groups:**
