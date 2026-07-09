@@ -15,8 +15,14 @@
 - 微信小程序（原生）
 - 微信云开发（云数据库、云存储、云函数）
 - Node.js 云函数
-- Jest 测试
-- Vercel 静态托管（Web 管理后台）
+- Jest 测试（34 tests, 9 suites）
+- GitHub Pages（Web 管理后台）
+- GitHub Actions（CI/CD）
+
+## 线上地址
+
+- **Web 管理后台**：[https://heyalun.github.io/shared-wish-album](https://heyalun.github.io/shared-wish-album)
+- **CI 状态**：[![CI](https://github.com/heyalun/shared-wish-album/actions/workflows/ci.yml/badge.svg)](https://github.com/heyalun/shared-wish-album/actions/workflows/ci.yml)
 
 ## 目录结构
 
@@ -55,14 +61,12 @@ npx serve .
 ## 分发
 
 ### 小程序
-通过微信审核后发布，用户扫码或搜索即可使用。
+通过微信审核后发布，用户扫码或搜索即可使用。开发阶段使用微信开发者工具导入 `miniprogram/` 目录。
 
 ### Web 管理后台
-
-部署到 Vercel：
-```bash
-cd web-admin
-vercel --prod
+通过 GitHub Pages 自动部署（push 到 main 分支自动触发）：
+```
+https://heyalun.github.io/shared-wish-album
 ```
 
 ## 凭据与安全

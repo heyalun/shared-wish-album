@@ -160,7 +160,7 @@ Produces: (data: { spaces: Array<{ _id, name, memberCount: number, photoCount: n
 
 ---
 
-### Task 1: Project Scaffolding
+### Task 1: Project Scaffolding ✅ **DONE** `27696b4`
 
 **Files:**
 - Create: `D:/vibe-project/package.json`
@@ -371,7 +371,7 @@ git commit -m "chore: initialize project with jest and WeChat SDK mock"
 
 ---
 
-### Task 2: login Cloud Function
+### Task 2: login Cloud Function ✅ **DONE** `6385cb5`
 
 **Files:**
 - Create: `D:/vibe-project/tests/login.test.js`
@@ -468,7 +468,7 @@ git commit -m "feat: implement login cloud function"
 
 ---
 
-### Task 3: createSpace Cloud Function
+### Task 3: createSpace Cloud Function ✅ **DONE** `0033117`
 
 **Files:**
 - Create: `D:/vibe-project/tests/createSpace.test.js`
@@ -596,7 +596,7 @@ git commit -m "feat: implement createSpace cloud function"
 
 ---
 
-### Task 4: joinSpace Cloud Function
+### Task 4: joinSpace Cloud Function ✅ **DONE** `8e6f3a3`
 
 **Files:**
 - Create: `D:/vibe-project/tests/joinSpace.test.js`
@@ -710,7 +710,7 @@ git commit -m "feat: implement joinSpace cloud function"
 
 ---
 
-### Task 5: uploadPhoto Cloud Function
+### Task 5: uploadPhoto Cloud Function ✅ **DONE** `64e1297`
 
 **Files:**
 - Create: `D:/vibe-project/tests/uploadPhoto.test.js`
@@ -848,7 +848,7 @@ git commit -m "feat: implement uploadPhoto cloud function"
 
 ---
 
-### Task 6: getPhotos Cloud Function
+### Task 6: getPhotos Cloud Function ✅ **DONE** `8e9bc21`
 
 **Files:**
 - Create: `D:/vibe-project/tests/getPhotos.test.js`
@@ -958,7 +958,7 @@ git commit -m "feat: implement getPhotos cloud function"
 
 ---
 
-### Task 7: createWish Cloud Function
+### Task 7: createWish Cloud Function ✅ **DONE** `5bc3da0`
 
 **Files:**
 - Create: `D:/vibe-project/tests/createWish.test.js`
@@ -1100,7 +1100,7 @@ git commit -m "feat: implement createWish cloud function"
 
 ---
 
-### Task 8: getWishes Cloud Function
+### Task 8: getWishes Cloud Function ✅ **DONE** `57269e8`
 
 **Files:**
 - Create: `D:/vibe-project/tests/getWishes.test.js`
@@ -1202,7 +1202,7 @@ git commit -m "feat: implement getWishes cloud function"
 
 ---
 
-### Task 9: completeWish Cloud Function
+### Task 9: completeWish Cloud Function ✅ **DONE** `b69d5d2`
 
 **Files:**
 - Create: `D:/vibe-project/tests/completeWish.test.js`
@@ -1328,7 +1328,7 @@ git commit -m "feat: implement completeWish cloud function"
 
 ---
 
-### Task 10: getStats Cloud Function
+### Task 10: getStats Cloud Function ✅ **DONE** `c6b7558`
 
 **Files:**
 - Create: `D:/vibe-project/tests/getStats.test.js`
@@ -1444,7 +1444,7 @@ git commit -m "feat: implement getStats cloud function"
 
 ---
 
-### Task 11: Mini-Program App Shell + Login Page
+### Task 11: Mini-Program App Shell + Login Page ✅ **DONE** `de6754a`
 
 **Files:**
 - Create: `D:/vibe-project/miniprogram/app.js`
@@ -1836,7 +1836,7 @@ git commit -m "feat: implement app shell and login/space list page"
 
 ---
 
-### Task 12: Space Home Page (Tabs)
+### Task 12: Space Home Page (Tabs) ✅ **DONE** `cc91160`
 
 **Files:**
 - Create: `D:/vibe-project/miniprogram/pages/space/space.js`
@@ -2010,7 +2010,7 @@ git commit -m "feat: implement space home page with tabs"
 
 ---
 
-### Task 13: Photo Pages (Stream, Detail, Upload)
+### Task 13: Photo Pages (Stream, Detail, Upload) ✅ **DONE** `9be9bf3` `4f29f4c`
 
 **Files:**
 - Create: `D:/vibe-project/miniprogram/pages/photos/photos.js`
@@ -2520,7 +2520,7 @@ git commit -m "feat: implement photo pages (stream, detail, upload)"
 
 ---
 
-### Task 14: Wish Pages (List, Create, Detail)
+### Task 14: Wish Pages (List, Create, Detail) ✅ **DONE** `4f29f4c`
 
 **Files:**
 - Create: `D:/vibe-project/miniprogram/pages/wishes/wishes.js`
@@ -3074,7 +3074,7 @@ git commit -m "feat: implement wish pages (list, create, detail)"
 
 ---
 
-### Task 15: Space Settings Page
+### Task 15: Space Settings Page ✅ **DONE** `b3d1ce3`
 
 **Files:**
 - Create: `D:/vibe-project/miniprogram/pages/space-settings/space-settings.js`
@@ -3208,7 +3208,7 @@ git commit -m "feat: implement space settings page"
 
 ---
 
-### Task 16: Web Admin Dashboard
+### Task 16: Web Admin Dashboard ✅ **DONE** `f7099fe`
 
 **Files:**
 - Create: `D:/vibe-project/web-admin/index.html`
@@ -3303,7 +3303,7 @@ git commit -m "feat: implement web admin dashboard"
 
 ---
 
-### Task 17: CI Configuration + README
+### Task 17: CI Configuration + README ✅ **DONE** `c097667`
 
 **Files:**
 - Modify: `D:/vibe-project/.gitlab-ci.yml`
