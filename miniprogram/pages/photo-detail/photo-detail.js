@@ -19,12 +19,6 @@ Page({
       if (res.data) {
         const photo = res.data;
         photo.takenAtFormatted = util.formatDateTime(photo.takenAt);
-        if (photo.imageUrl && photo.imageUrl.startsWith('cloud://')) {
-          try {
-            const tempRes = await wx.cloud.getTempFileURL({ fileList: [photo.imageUrl] });
-            photo.imageUrl = tempRes.fileList[0].tempFileURL;
-          } catch (e) {}
-        }
         this.setData({ photo });
       } else {
         wx.showToast({ title: '照片已失效', icon: 'none' });
