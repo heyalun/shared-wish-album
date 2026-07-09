@@ -19,28 +19,58 @@
     .loading { text-align: center; padding: 60px; color: #999; }
     .error { text-align: center; padding: 60px; color: #e74c3c; }
     .empty { text-align: center; padding: 60px; color: #999; }
+    .badge { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
+    .badge-live { background: #e8f5e9; color: #07c160; }
+    .badge-demo { background: #fff3e0; color: #e65100; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>共享心愿相册</h1>
-      <p>管理后台 - 空间统计概览</p>
+      <p id="subtitle">管理后台 - 空间统计概览</p>
     </div>
     <div id="stats" class="loading">加载中...</div>
   </div>
 
   <script>
+    const API_URL = 'https://cloud1-d3giuyj0r8a497b5d.ap-shanghai.app.tcloudbase.com/getStats';
+
     function loadStats() {
       const container = document.getElementById('stats');
+      const subtitle = document.getElementById('subtitle');
 
-      const demoSpaces = [
-        { name: '我们的旅行日记', memberCount: 2, photoCount: 42, wishCount: 15 },
-        { name: '美食探店计划', memberCount: 2, photoCount: 28, wishCount: 23 },
-        { name: '周末小聚', memberCount: 3, photoCount: 10, wishCount: 5 }
-      ];
+      fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+        .then(res => res.json())
+        .then(data => {
+          if (data.data && data.data.spaces) {
+            const spaces = data.data.spaces;
+            if (spaces.length === 0) {
+              container.innerHTML = '<div class="empty">暂无空间数据</div>';
+              return;
+            }
+            subtitle.innerHTML = '管理后台 - 空间统计概览 <span class="badge badge-live">实时数据</span>';
+            renderCards(container, spaces);
+          } else {
+            throw new Error('Invalid response');
+          }
+        })
+        .catch(() => {
+          subtitle.innerHTML = '管理后台 - 空间统计概览 <span class="badge badge-demo">演示数据</span>';
+          const demoSpaces = [
+            { name: '我们的旅行日记', memberCount: 2, photoCount: 42, wishCount: 15 },
+            { name: '美食探店计划', memberCount: 2, photoCount: 28, wishCount: 23 },
+            { name: '周末小聚', memberCount: 3, photoCount: 10, wishCount: 5 }
+          ];
+          renderCards(container, demoSpaces);
+        });
+    }
 
-      container.innerHTML = demoSpaces.map(space => `
+    function renderCards(container, spaces) {
+      container.innerHTML = '';
+      const wrapper = document.createElement('div');
+      wrapper.className = 'stat-grid';
+      wrapper.innerHTML = spaces.map(space => `
         <div class="stat-card">
           <div class="stat-card-name">${escapeHtml(space.name)}</div>
           <div class="stat-row"><span>成员</span><span>${space.memberCount} 人</span></div>
@@ -48,13 +78,8 @@
           <div class="stat-row"><span>心愿</span><span>${space.wishCount} 个</span></div>
         </div>
       `).join('');
-
-      const wrapper = document.createElement('div');
-      wrapper.className = 'stat-grid';
-      wrapper.innerHTML = container.innerHTML;
-      container.innerHTML = '';
       container.appendChild(wrapper);
-      container.className = 'stat-grid';
+      container.className = '';
     }
 
     function escapeHtml(text) {

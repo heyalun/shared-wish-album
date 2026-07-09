@@ -33,6 +33,11 @@ const mockDatabase = {
                 Object.assign(self._docs[idx], data);
               }
               return Promise.resolve({ stats: { updated: idx !== -1 ? 1 : 0 } });
+            },
+            remove() {
+              const idx = self._docs.findIndex(d => d._id === id);
+              if (idx !== -1) self._docs.splice(idx, 1);
+              return Promise.resolve({ stats: { removed: idx !== -1 ? 1 : 0 } });
             }
           };
         },
@@ -63,6 +68,14 @@ const mockDatabase = {
             },
             count() {
               return Promise.resolve({ total: filterFn(self._docs).length });
+            },
+            remove() {
+              const toRemove = filterFn(self._docs);
+              toRemove.forEach(d => {
+                const idx = self._docs.indexOf(d);
+                if (idx >= 0) self._docs.splice(idx, 1);
+              });
+              return Promise.resolve({ stats: { removed: toRemove.length } });
             },
             orderBy(field, direction) {
               const filteredDocs = filterFn([...self._docs]);
@@ -117,7 +130,8 @@ const mockCloud = {
     return Promise.resolve({
       fileList: fileList.map(fileID => ({ fileID, tempFileURL: `https://tmp/${fileID}` }))
     });
-  }
+  },
+  deleteFile() { return Promise.resolve({ fileList: [] }); }
 };
 
 module.exports = mockCloud;

@@ -9,15 +9,17 @@
 - 上传照片，附带时间、地点、感受
 - 记录心愿（美食/旅游/其他），标记完成
 - 多空间管理，与不同的人共享
+- 空间管理（成员列表、邀请码、删除空间）
 
 ## 技术栈
 
 - 微信小程序（原生）
 - 微信云开发（云数据库、云存储、云函数）
 - Node.js 云函数
-- Jest 测试（34 tests, 9 suites）
+- Jest 测试（38 tests, 10 suites）
 - GitHub Pages（Web 管理后台）
 - GitHub Actions（CI/CD）
+- Docker（云函数测试容器化）
 
 ## 线上地址
 
@@ -27,14 +29,21 @@
 ## 目录结构
 
 ```
-├── SPEC.md             # 设计文档
-├── PLAN.md             # 实现计划
-├── README.md           # 本文档
-├── cloudfunctions/     # 云函数（Node.js）
-├── miniprogram/        # 小程序前端代码
-├── web-admin/          # Web 管理后台
-├── tests/              # 云函数单元测试
-└── .gitlab-ci.yml      # CI 配置
+├── SPEC.md                 # 设计文档
+├── PLAN.md                 # 实现计划
+├── SPEC_PROCESS.md         # 过程文档
+├── AGENT_LOG.md            # 智能体协作日志
+├── README.md               # 本文档
+├── Dockerfile              # Docker 容器分发
+├── .gitlab-ci.yml          # CI 配置
+├── miniprogram/            # 微信小程序
+│   ├── app.js / .json / .wxss
+│   ├── utils/
+│   ├── pages/              # 9 个页面
+│   └── cloudfunctions/     # 10 个云函数
+├── web-admin/              # Web 管理后台
+├── tests/                  # 云函数单元测试
+└── .github/workflows/      # GitHub Actions
 ```
 
 ## 本地开发
@@ -51,8 +60,13 @@ npm install
 npm test
 ```
 
-### Web 管理后台
+### Docker 运行测试
+```bash
+docker build -t shared-wish-album .
+docker run shared-wish-album
+```
 
+### Web 管理后台
 ```bash
 cd web-admin
 npx serve .
@@ -63,11 +77,20 @@ npx serve .
 ### 小程序
 通过微信审核后发布，用户扫码或搜索即可使用。开发阶段使用微信开发者工具导入 `miniprogram/` 目录。
 
+### Docker 容器
+```bash
+docker build -t shared-wish-album .
+docker run shared-wish-album
+```
+容器内运行全部云函数单元测试，适用于 CI/CD 或本地验证。
+
 ### Web 管理后台
 通过 GitHub Pages 自动部署（push 到 main 分支自动触发）：
 ```
 https://heyalun.github.io/shared-wish-album
 ```
+
+如需连接实时数据，需在微信云开发控制台为 `getStats` 云函数开启 HTTP 访问，然后将 `web-admin/index.html` 中的 `API_URL` 替换为实际地址。
 
 ## 凭据与安全
 本项目不涉及 LLM API Key 或第三方付费 API。用户授权通过微信 OAuth 完成，openid 由云函数安全获取。云数据库使用安全规则控制数据访问权限。
@@ -78,6 +101,7 @@ https://heyalun.github.io/shared-wish-album
 - 云开发环境需在微信公众平台配置
 - 当前版本不含 AI 功能
 - 图片上传限制 10MB
+- Web 管理后台默认使用演示数据，配置 HTTP 触发器后可连接实时数据
 
 ## License
 
