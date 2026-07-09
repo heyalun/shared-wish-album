@@ -1,10 +1,9 @@
-const { main: completeWish } = require('../cloudfunctions/completeWish');
-const { main: createSpace } = require('../cloudfunctions/createSpace');
-const { main: createWish } = require('../cloudfunctions/createWish');
+const { main: completeWish } = require('../miniprogram/cloudfunctions/completeWish');
+const { main: createSpace } = require('../miniprogram/cloudfunctions/createSpace');
+const { main: createWish } = require('../miniprogram/cloudfunctions/createWish');
 
 describe('completeWish', () => {
   let spaceId;
-
   beforeEach(async () => {
     const created = await createSpace({ name: '测试空间' }, {});
     spaceId = created.data.space._id;
@@ -13,7 +12,6 @@ describe('completeWish', () => {
   test('marks a wish as done', async () => {
     const wish = await createWish({ spaceId, title: '心愿', type: 'food' }, {});
     const result = await completeWish({ wishId: wish.data.wish._id }, {});
-
     expect(result.data.wish.done).toBe(true);
     expect(result.data.wish.doneAt).toBeDefined();
     expect(result.data.wish.doneBy).toBe('mock-openid-123');
@@ -21,11 +19,7 @@ describe('completeWish', () => {
 
   test('links photos to completed wish', async () => {
     const wish = await createWish({ spaceId, title: '心愿', type: 'food' }, {});
-    const result = await completeWish({
-      wishId: wish.data.wish._id,
-      linkedPhotoIds: ['photo-1', 'photo-2']
-    }, {});
-
+    const result = await completeWish({ wishId: wish.data.wish._id, linkedPhotoIds: ['photo-1', 'photo-2'] }, {});
     expect(result.data.wish.linkedPhotoIds).toEqual(['photo-1', 'photo-2']);
   });
 

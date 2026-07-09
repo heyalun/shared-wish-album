@@ -1,9 +1,8 @@
-const { main: uploadPhoto } = require('../cloudfunctions/uploadPhoto');
-const { main: createSpace } = require('../cloudfunctions/createSpace');
+const { main: uploadPhoto } = require('../miniprogram/cloudfunctions/uploadPhoto');
+const { main: createSpace } = require('../miniprogram/cloudfunctions/createSpace');
 
 describe('uploadPhoto', () => {
   let spaceId;
-
   beforeEach(async () => {
     const created = await createSpace({ name: '测试空间' }, {});
     spaceId = created.data.space._id;
@@ -11,13 +10,9 @@ describe('uploadPhoto', () => {
 
   test('uploads a photo and creates record', async () => {
     const result = await uploadPhoto({
-      spaceId,
-      imageUrl: 'cloud://test-path/test.jpg',
-      takenAt: Date.now(),
-      locationName: '南京',
-      caption: '美好的一天'
+      spaceId, imageUrl: 'cloud://test-path/test.jpg', takenAt: Date.now(),
+      locationName: '南京', caption: '美好的一天'
     }, {});
-
     expect(result.data.photo).toBeDefined();
     expect(result.data.photo.spaceId).toBe(spaceId);
     expect(result.data.photo.uploaderId).toBe('mock-openid-123');
@@ -28,11 +23,8 @@ describe('uploadPhoto', () => {
 
   test('accepts optional location fields', async () => {
     const result = await uploadPhoto({
-      spaceId,
-      imageUrl: 'cloud://test-path/test.jpg',
-      takenAt: Date.now()
+      spaceId, imageUrl: 'cloud://test-path/test.jpg', takenAt: Date.now()
     }, {});
-
     expect(result.data.photo.locationName).toBeUndefined();
     expect(result.data.photo.caption).toBeUndefined();
   });

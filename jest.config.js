@@ -3,6 +3,6 @@ module.exports = {
   roots: ['<rootDir>/tests'],
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
   testMatch: ['**/*.test.js'],
-  collectCoverageFrom: ['cloudfunctions/**/*.js'],
+  collectCoverageFrom: ['miniprogram/cloudfunctions/**/*.js'],
   coverageDirectory: 'coverage'
 };

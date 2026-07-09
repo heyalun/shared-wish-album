@@ -1,4 +1,4 @@
-const { main } = require('../cloudfunctions/login');
+const { main } = require('../miniprogram/cloudfunctions/login');
 
 describe('login', () => {
   test('creates a new user on first login', async () => {

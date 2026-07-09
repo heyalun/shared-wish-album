@@ -1,9 +1,8 @@
-const { main: createWish } = require('../cloudfunctions/createWish');
-const { main: createSpace } = require('../cloudfunctions/createSpace');
+const { main: createWish } = require('../miniprogram/cloudfunctions/createWish');
+const { main: createSpace } = require('../miniprogram/cloudfunctions/createSpace');
 
 describe('createWish', () => {
   let spaceId;
-
   beforeEach(async () => {
     const created = await createSpace({ name: '测试空间' }, {});
     spaceId = created.data.space._id;

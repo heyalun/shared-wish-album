@@ -1,4 +1,4 @@
-const { main } = require('../cloudfunctions/createSpace');
+const { main } = require('../miniprogram/cloudfunctions/createSpace');
 
 describe('createSpace', () => {
   test('creates a space with a 6-character invite code', async () => {

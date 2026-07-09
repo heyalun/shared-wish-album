@@ -1,11 +1,10 @@
-const { main: joinSpace } = require('../cloudfunctions/joinSpace');
-const { main: createSpace } = require('../cloudfunctions/createSpace');
+const { main: joinSpace } = require('../miniprogram/cloudfunctions/joinSpace');
+const { main: createSpace } = require('../miniprogram/cloudfunctions/createSpace');
 
 describe('joinSpace', () => {
   test('joins an existing space by invite code', async () => {
     const created = await createSpace({ name: '测试空间' }, {});
     const inviteCode = created.data.space.inviteCode;
-
     global.cloud._openid = 'another-user';
     const result = await joinSpace({ inviteCode }, {});
     expect(result.data.space).toBeDefined();
@@ -24,7 +23,6 @@ describe('joinSpace', () => {
   test('prevents duplicate join', async () => {
     const created = await createSpace({ name: '测试空间' }, {});
     const inviteCode = created.data.space.inviteCode;
-
     global.cloud._openid = 'same-user';
     await joinSpace({ inviteCode }, {});
     await expect(joinSpace({ inviteCode }, {})).rejects.toThrow('你已在该空间中');
