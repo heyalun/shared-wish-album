@@ -14,12 +14,10 @@ Page({
   async loadPhoto(photoId) {
     wx.showLoading({ title: '加载中...' });
     try {
-      const res = await wx.cloud.callFunction({
-        name: 'getPhotos',
-        data: { photoId }
-      });
-      if (res.result.data.photo) {
-        const photo = res.result.data.photo;
+      const db = wx.cloud.database();
+      const res = await db.collection('photos').doc(photoId).get();
+      if (res.data) {
+        const photo = res.data;
         photo.takenAtFormatted = util.formatDateTime(photo.takenAt);
         if (photo.imageUrl && photo.imageUrl.startsWith('cloud://')) {
           try {
