@@ -23,7 +23,7 @@
   <view wx:if="{{wish.done}}" class="completed-info">
     <view class="info-row">
       <text class="info-label">完成时间</text>
-      <text class="info-value">{{wish.doneAt}}</text>
+      <text class="info-value">{{wish.doneAtFormatted}}</text>
     </view>
   </view>
 

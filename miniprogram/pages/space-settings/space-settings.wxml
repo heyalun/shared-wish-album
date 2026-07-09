@@ -8,8 +8,23 @@
         <text class="info-value">{{space.name}}</text>
       </view>
       <view class="info-row">
+        <text class="info-label">创建时间</text>
+        <text class="info-value">{{createdAtFormatted}}</text>
+      </view>
+      <view class="info-row">
         <text class="info-label">成员</text>
         <text class="info-value">{{space.members.length}} 人</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">成员列表</view>
+    <view class="info-card">
+      <view wx:if="{{members.length === 0}}" class="empty-hint">暂无成员信息</view>
+      <view wx:for="{{members}}" wx:key="openid" class="member-row">
+        <image class="member-avatar" src="{{item.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill" />
+        <text class="member-name">{{item.nickname || '微信用户'}}</text>
       </view>
     </view>
   </view>
@@ -20,6 +35,14 @@
       <view class="invite-code">{{inviteCode}}</view>
       <view class="invite-hint">将邀请码发给 TA，TA 在首页点击「加入」输入即可</view>
       <button class="btn-primary" bindtap="copyInviteCode">复制邀请码</button>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">危险操作</view>
+    <view class="danger-card">
+      <view class="danger-hint">删除空间后，所有照片和心愿将被永久删除，不可恢复</view>
+      <button class="btn-danger" bindtap="deleteSpace">删除空间</button>
     </view>
   </view>
 </view>

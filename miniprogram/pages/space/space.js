@@ -17,8 +17,8 @@ Page({
     try {
       const db = wx.cloud.database();
       const res = await db.collection('spaces').doc(this.data.spaceId).get();
-      if (res.data && res.data.length > 0) {
-        this.setData({ spaceName: res.data[0].name });
+      if (res.data) {
+        this.setData({ spaceName: res.data.name });
       }
     } catch (err) {
       wx.showToast({ title: '加载失败', icon: 'none' });

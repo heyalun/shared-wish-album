@@ -10,11 +10,11 @@ exports.main = async (event, context) => {
   const db = cloud.database();
   const result = await db.collection('wishes').doc(wishId).get();
 
-  if (result.data.length === 0) {
+  if (!result.data) {
     throw new Error('心愿不存在');
   }
 
-  const wish = result.data[0];
+  const wish = result.data;
   if (wish.done) {
     throw new Error('心愿已完成');
   }

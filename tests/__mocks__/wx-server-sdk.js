@@ -25,7 +25,7 @@ const mockDatabase = {
           return {
             get() {
               const doc = self._docs.find(d => d._id === id);
-              return Promise.resolve({ data: doc ? [doc] : [] });
+              return Promise.resolve({ data: doc || null });
             },
             update({ data }) {
               const idx = self._docs.findIndex(d => d._id === id);

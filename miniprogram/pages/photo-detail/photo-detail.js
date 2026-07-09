@@ -16,8 +16,8 @@ Page({
     try {
       const db = wx.cloud.database();
       const res = await db.collection('photos').doc(photoId).get();
-      if (res.data && res.data.length > 0) {
-        const photo = res.data[0];
+      if (res.data) {
+        const photo = res.data;
         photo.takenAtFormatted = util.formatDateTime(photo.takenAt);
         this.setData({ photo });
       } else {

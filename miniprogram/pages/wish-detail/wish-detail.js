@@ -1,4 +1,6 @@
 // miniprogram/pages/wish-detail/wish-detail.js
+const util = require('../../utils/util');
+
 Page({
   data: {
     wish: null,
@@ -21,8 +23,12 @@ Page({
     try {
       const db = wx.cloud.database();
       const res = await db.collection('wishes').doc(this.data.wishId).get();
-      if (res.data && res.data.length > 0) {
-        this.setData({ wish: res.data[0] });
+      if (res.data) {
+        const wish = res.data;
+        if (wish.done && wish.doneAt) {
+          wish.doneAtFormatted = util.formatDateTime(wish.doneAt);
+        }
+        this.setData({ wish });
       } else {
         wx.showToast({ title: '心愿不存在', icon: 'none' });
       }
