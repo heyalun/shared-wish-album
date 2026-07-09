@@ -42,6 +42,16 @@ Page({
         takenAtFormatted: util.formatDateTime(p.takenAt)
       }));
 
+      const cloudUrls = newPhotos.filter(p => p.imageUrl && p.imageUrl.startsWith('cloud://'));
+      if (cloudUrls.length > 0) {
+        try {
+          const tempRes = await wx.cloud.getTempFileURL({ fileList: cloudUrls.map(p => p.imageUrl) });
+          const urlMap = {};
+          tempRes.fileList.forEach(f => { urlMap[f.fileID] = f.tempFileURL; });
+          newPhotos.forEach(p => { if (urlMap[p.imageUrl]) p.imageUrl = urlMap[p.imageUrl]; });
+        } catch (e) {}
+      }
+
       this.setData({
         photos: [...this.data.photos, ...newPhotos],
         hasMore: res.result.data.hasMore
