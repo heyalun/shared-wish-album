@@ -19,6 +19,8 @@ Page({
       if (res.data) {
         const photo = res.data;
         photo.takenAtFormatted = util.formatDateTime(photo.takenAt);
+        const tempRes = await wx.cloud.getTempFileURL({ fileList: [photo.imageUrl] });
+        photo.imageUrl = tempRes.fileList[0].tempFileURL;
         this.setData({ photo });
       } else {
         wx.showToast({ title: '照片已失效', icon: 'none' });
