@@ -28,14 +28,16 @@ Page({
     }
   },
 
-  async handleLogin() {
+async handleLogin() {
     wx.showLoading({ title: '登录中...' });
     try {
       await app.login();
       this.setData({ isLoggedIn: true });
       this.loadSpaces();
     } catch (err) {
-      wx.showToast({ title: '登录失败，请重试', icon: 'none' });
+      wx.hideLoading();
+      console.error('登录失败', err);
+      wx.showToast({ title: '登录失败: ' + (err.message || err.errMsg || '未知错误'), icon: 'none', duration: 3000 });
     } finally {
       wx.hideLoading();
     }
