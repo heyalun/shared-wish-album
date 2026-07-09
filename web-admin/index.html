@@ -43,8 +43,8 @@
       fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' } })
         .then(res => res.json())
         .then(data => {
-          if (data.data && data.data.spaces) {
-            const spaces = data.data.spaces;
+          const spaces = data.data ? data.data.spaces : data.spaces;
+          if (spaces && spaces.length > 0) {
             if (spaces.length === 0) {
               container.innerHTML = '<div class="empty">暂无空间数据</div>';
               return;

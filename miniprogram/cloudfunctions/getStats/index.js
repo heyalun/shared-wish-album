@@ -20,5 +20,7 @@ exports.main = async (event, context) => {
     };
   }));
 
-  return { data: { spaces: stats } };
+  const isHttp = !!event.httpMethod;
+
+  return isHttp ? { spaces: stats } : { data: { spaces: stats } };
 };
