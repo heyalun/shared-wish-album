@@ -42,14 +42,6 @@ Page({
         takenAtFormatted: util.formatDateTime(p.takenAt)
       }));
 
-      const fileList = newPhotos.map(p => p.imageUrl).filter(Boolean);
-      if (fileList.length > 0) {
-        const tempRes = await wx.cloud.getTempFileURL({ fileList });
-        const urlMap = {};
-        tempRes.fileList.forEach(f => { urlMap[f.fileID] = f.tempFileURL; });
-        newPhotos.forEach(p => { p.imageUrl = urlMap[p.imageUrl] || p.imageUrl; });
-      }
-
       this.setData({
         photos: [...this.data.photos, ...newPhotos],
         hasMore: res.result.data.hasMore
