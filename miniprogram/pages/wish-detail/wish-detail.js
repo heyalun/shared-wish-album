@@ -21,8 +21,10 @@ Page({
     try {
       const db = wx.cloud.database();
       const res = await db.collection('wishes').doc(this.data.wishId).get();
-      if (res.data) {
-        this.setData({ wish: res.data });
+      if (res.data && res.data.length > 0) {
+        this.setData({ wish: res.data[0] });
+      } else {
+        wx.showToast({ title: '心愿不存在', icon: 'none' });
       }
     } catch (err) {
       wx.showToast({ title: '加载失败', icon: 'none' });
@@ -30,6 +32,8 @@ Page({
   },
 
   async completeWish() {
+    const wishId = this.data.wishId;
+    const that = this;
     wx.showModal({
       title: '确认完成',
       content: '确定要标记这个心愿为已完成吗？',
@@ -38,10 +42,10 @@ Page({
         try {
           await wx.cloud.callFunction({
             name: 'completeWish',
-            data: { wishId: this.data.wishId }
+            data: { wishId: wishId }
           });
           wx.showToast({ title: '心愿已完成！', icon: 'success' });
-          this.loadWish();
+          that.loadWish();
         } catch (err) {
           wx.showToast({ title: err.message || '操作失败', icon: 'none' });
         }
