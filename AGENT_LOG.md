@@ -142,3 +142,31 @@
 3. **Windows 编码陷阱**：PowerShell 的 UTF-8 处理不可靠，应使用 Node.js 处理文本文件
 4. **task brief 质量决定子代理成功率**：17 个任务中 15 个一次成功，2 个有轻微关注——task brief 越详细，子代理越不需要人工干预
 5. **model 选择**：本项目全部使用 `general` 子代理，对于代码量小、逻辑清晰的任务完全够用，无需动用更强模型
+
+---
+
+### 2026-07-08 17:00 — doc().get() 返回值 bug 修复
+
+- **问题**：mock 的 `doc().get()` 返回 `{ data: [doc] }` 数组，但真实 SDK 返回 `{ data: doc }` 单对象
+- **影响文件**：`space.js`、`photo-detail.js`、`wish-detail.js`、`completeWish` 云函数
+- **修复**：统一改为 `if (res.data)` 和 `res.data.name`（非 `res.data[0].name`）
+- **教训**：mock 必须与真实 SDK 行为一致，否则测试通过但真机运行失败
+
+### 2026-07-08 17:30 — space-settings 页面增强
+
+- **新增**：成员列表、创建时间、删除空间功能、复制邀请码
+- **新增云函数**：`deleteSpace`（仅创建者可删除，删除关联 photos 和 wishes）
+- **测试**：新增 4 个 deleteSpace 测试用例
+
+### 2026-07-08 18:00 — Docker 分发 + Web 管理后台 API 连接
+
+- **新增**：`Dockerfile` + `.dockerignore`，容器化测试
+- **Web 管理后台**：连接 `getStats` 云函数 HTTP API，展示实时数据
+- **修复**：CORS 跨域问题，云函数添加 `Access-Control-Allow-Origin` 响应头
+- **测试**：38/38 全部通过
+
+### 2026-07-08 18:30 — 照片加载问题调试
+
+- **问题**：跨用户照片无法加载
+- **尝试**：云函数端 `getTempFileURL` 转换 → 失败（`wx-server-sdk` 的 `getTempFileURL` 行为不一致）
+- **最终方案**：回退到原始代码，建议用户检查云存储权限设置

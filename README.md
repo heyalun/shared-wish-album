@@ -85,12 +85,10 @@ docker run shared-wish-album
 容器内运行全部云函数单元测试，适用于 CI/CD 或本地验证。
 
 ### Web 管理后台
-通过 GitHub Pages 自动部署（push 到 main 分支自动触发）：
+通过 GitHub Pages 自动部署（push 到 main 分支自动触发），连接云函数 `getStats` HTTP 接口展示实时数据：
 ```
 https://heyalun.github.io/shared-wish-album
 ```
-
-如需连接实时数据，需在微信云开发控制台为 `getStats` 云函数开启 HTTP 访问，然后将 `web-admin/index.html` 中的 `API_URL` 替换为实际地址。
 
 ## 凭据与安全
 本项目不涉及 LLM API Key 或第三方付费 API。用户授权通过微信 OAuth 完成，openid 由云函数安全获取。云数据库使用安全规则控制数据访问权限。
@@ -101,7 +99,6 @@ https://heyalun.github.io/shared-wish-album
 - 云开发环境需在微信公众平台配置
 - 当前版本不含 AI 功能
 - 图片上传限制 10MB
-- Web 管理后台默认使用演示数据，配置 HTTP 触发器后可连接实时数据
 
 ## License
 
