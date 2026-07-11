@@ -40,7 +40,7 @@
       const container = document.getElementById('stats');
       const subtitle = document.getElementById('subtitle');
 
-      fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+      fetch(API_URL)
         .then(res => res.json())
         .then(data => {
           const spaces = data.data ? data.data.spaces : data.spaces;

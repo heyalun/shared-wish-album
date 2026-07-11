@@ -22,5 +22,16 @@ exports.main = async (event, context) => {
 
   const isHttp = !!event.httpMethod;
 
-  return isHttp ? { spaces: stats } : { data: { spaces: stats } };
+  if (isHttp) {
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({ spaces: stats })
+    };
+  }
+
+  return { data: { spaces: stats } };
 };
